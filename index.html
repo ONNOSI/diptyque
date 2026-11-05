@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DIPTYQUE | PARIS, A MEMORY IN SCENT</title>
+<!-- [수정가이드] 폰트 교체는 아래 링크 / 색상·간격은 css/style.css 상단 :root / 상품·문구 데이터는 js/script.js 상단 -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+KR:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="grain"></div><!-- 필름 그레인 질감 레이어 (제거하려면 이 줄 삭제) -->
+
+<!-- ===== 1. 헤더 + 메가메뉴 [수정가이드] 메뉴명은 a 텍스트, 하위메뉴는 .mega 안 a 추가/삭제 ===== -->
+<header id="header">
+  <button id="burger" aria-label="메뉴"><span></span><span></span></button>
+  <a href="#home" class="logo">DIPTYQUE</a>
+  <nav id="nav"><ul>
+    <li class="has-mega"><a href="#shop">SHOP</a><div class="mega"><a href="#shop" data-filter="all">전체</a><a href="#shop" data-filter="perfume">퍼퓸</a><a href="#shop" data-filter="candle">캔들</a><a href="#shop" data-filter="body">바디</a></div></li>
+    <li><a href="#story">OUR STORY</a></li>
+    <li class="has-mega"><a href="#collection">COLLECTION</a><div class="mega"><a href="#collection">ORPHÉON</a><a href="#shop" data-filter="perfume">PHILOSYKOS</a><a href="#shop" data-filter="perfume">DO SON</a></div></li>
+    <li><a href="#journal">JOURNAL</a></li>
+    <li><a href="#" id="mypageBtn">MY PAGE</a></li>
+  </ul></nav>
+  <button id="cartBtn">BAG <span id="cartCount">0</span></button>
+</header>
+
+<!-- ===== 2. 메인 비주얼 [수정가이드] 슬라이드 추가 = .slide 블록 복사 / 이미지는 img src 교체 ===== -->
+<section id="home" class="hero">
+  <div class="slide on"><div class="txt"><p class="eyebrow">N° 01 — SAINT-GERMAIN, 1961</p><h1>Paris,<br><i>a memory</i><br>in scent</h1><p class="kr">기억을 향기로 기록하다</p><a class="link" href="#collection">ORPHÉON 만나기 →</a></div>
+    <figure class="oval"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=1200" alt="파리 향수 비주얼" data-ph="PARIS"></figure></div>
+  <div class="slide"><div class="txt"><p class="eyebrow">N° 02 — LE JAZZ BAR</p><h1>The night<br><i>smells of</i><br>wood</h1><p class="kr">재즈바의 따뜻한 밤을 담다</p><a class="link" href="#story">브랜드 스토리 →</a></div>
+    <figure class="oval"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1200" alt="재즈바 비주얼" data-ph="JAZZ"></figure></div>
+  <div class="slide"><div class="txt"><p class="eyebrow">N° 03 — PROMOTION</p><h1>Letters,<br><i>folded in</i><br>fragrance</h1><p class="kr">오래된 편지 같은 시그니처 향</p><a class="link" href="#shop">SHOP →</a></div>
+    <figure class="oval"><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=1200" alt="편지 비주얼" data-ph="LETTER"></figure></div>
+  <div class="hud"><button class="prev" aria-label="이전">←</button><span id="count">01 / 03</span><button class="next" aria-label="다음">→</button></div>
+  <div class="scroll">SCROLL</div>
+</section>
+
+<!-- ===== 3. SHOP: 중앙 포커스 캐러셀 (좌우 클릭/화살표/터치 스와이프) ===== -->
+<section id="shop" class="sec shop">
+  <p class="eyebrow reveal">THE OBJECTS</p><h2 class="reveal">Shop</h2>
+  <div class="tabs"><button class="on" data-filter="all">ALL</button><button data-filter="perfume">PERFUME</button><button data-filter="candle">CANDLE</button><button data-filter="body">BODY</button></div>
+  <div class="carousel"><button class="c-prev" aria-label="이전">‹</button><div id="stage" class="stage"></div><button class="c-next" aria-label="다음">›</button></div>
+  <div id="detail" class="detail"></div>
+</section>
+
+<!-- ===== 4. OUR STORY: 좌측 연도 고정(sticky) + 우측 편지 카드 스크롤 [수정가이드] 연혁은 .letter 복사, data-year 수정 ===== -->
+<section id="story" class="story">
+  <div class="parallax" data-bg="https://images.unsplash.com/photo-1431274172761-fca41d930114?w=1600"></div>
+  <div class="story-grid">
+    <div class="year-box"><p class="eyebrow">OUR STORY</p><div id="year">1961</div></div>
+    <div class="letters">
+      <article class="letter reveal" data-year="1961"><small>Paris, 1961</small><p>생제르맹 거리 34번지, 세 명의 예술가가 작은 부티크의 문을 엽니다.</p></article>
+      <article class="letter reveal" data-year="1963"><small>Paris, 1963</small><p>첫 번째 향 L'Eau가 태어나고, 향은 기억을 적는 또 하나의 언어가 됩니다.</p></article>
+      <article class="letter reveal" data-year="2000"><small>Paris, 2000s</small><p>장소와 시간을 향으로 기록한 시그니처 컬렉션이 세계로 이어집니다.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. COLLECTION: ORPHÉON 비대칭 매거진 레이아웃 (스크롤 시 이미지 확대) ===== -->
+<section id="collection" class="sec col">
+  <figure class="oval big reveal"><img data-zoom src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=1200" alt="ORPHÉON" data-ph="ORPHÉON"></figure>
+  <div class="col-txt reveal"><p class="eyebrow">THE SIGNATURE</p><h2>Orphéon</h2><p class="kr">재즈바의 우드와 주니퍼 베리, 시더우드의 온기. 1960년대 파리의 밤을 병에 담았습니다.</p>
+    <ul class="notes"><li><b>TOP</b>주니퍼 베리</li><li><b>HEART</b>시더우드</li><li><b>BASE</b>통카빈 · 우디</li></ul>
+    <button class="btn" data-add="orpheon">장바구니 담기</button></div>
+</section>
+
+<!-- ===== 6. JOURNAL: 필름 프레임 카드 + 영상 [수정가이드] 이미지 src / iframe 영상 ID 교체 ===== -->
+<section id="journal" class="sec">
+  <p class="eyebrow reveal">FIELD NOTES</p><h2 class="reveal">Journal</h2>
+  <div class="film-row">
+    <figure class="film reveal"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800" alt="파리 거리" data-ph="PARIS"><figcaption>생제르맹의 아침</figcaption></figure>
+    <figure class="film reveal"><div class="video"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="브랜드 영상" allowfullscreen loading="lazy"></iframe></div><figcaption>브랜드 필름</figcaption></figure>
+    <figure class="film reveal"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800" alt="재즈" data-ph="JAZZ"><figcaption>재즈바의 밤</figcaption></figure>
+  </div>
+</section>
+
+<footer><p class="logo">DIPTYQUE</p><p>© concept page · 학습용 제작물</p></footer>
+
+<!-- ===== 7. 장바구니 / 마이페이지 팝업 ===== -->
+<div id="overlay"></div>
+<aside id="cart" class="drawer"><h3>BAG</h3><div id="cartList"></div><p class="total">합계 <b id="total">0원</b></p><button class="btn" id="closeCart">닫기</button></aside>
+<aside id="mypage" class="modal"><h3>MY PAGE</h3><p>로그인은 서버 연동 시 구현됩니다. (예시 화면)</p><button class="btn" data-close>닫기</button></aside>
+<script src="js/script.js"></script>
+</body>
+</html>
