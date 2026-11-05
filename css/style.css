@@ -476,7 +476,7 @@ footer{background:var(--black);color:var(--taupe);text-align:center;padding:60px
     #year {
         font-size: 22vw;
         text-align: left;
-        margin-top: -50px;
+        margin-top: 0;
         line-height: 1;
     }
 
@@ -493,5 +493,21 @@ footer{background:var(--black);color:var(--taupe);text-align:center;padding:60px
     .letter {
         width: 100%;
         margin: 0 0 5vh;
+    }
+}
+
+/* 모바일 화면 가로 밀림 방지 */
+@media (max-width: 768px) {
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    #story {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
     }
 }
