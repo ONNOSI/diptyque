@@ -477,7 +477,7 @@ footer{background:var(--black);color:var(--taupe);text-align:center;padding:60px
     }
 
      .year-box .eyebrow {
-        transform: translateY(-10px);
+        transform: translateY(-50px);
     }
 
     #year {
