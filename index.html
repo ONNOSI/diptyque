@@ -2,8 +2,9 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<!-- viewport-fit=cover: 아이폰 가로모드 노치 영역 대응(css의 env(safe-area-inset-*)와 함께 사용) / 확대 제한(user-scalable=no)은 접근성을 위해 넣지 않음 -->
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- viewport-fit=cover: 아이폰 가로모드 노치 대응(css의 env(safe-area-inset-*)와 함께 사용) / user-scalable=no는 접근성을 위해 넣지 않음 -->
+<!-- minimum-scale=1: iOS Safari가 "넘치는 콘텐츠에 맞춰 페이지를 자동 축소(shrink-to-fit)"하는 동작을 막는 안전장치. 확대(핀치 줌)는 그대로 허용 -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F1E9DC">
 <title>DIPTYQUE | PARIS, A MEMORY IN SCENT</title>
 <!-- [수정가이드] 폰트 교체는 아래 링크 / 색상·간격은 css/style.css 상단 :root / 상품·문구 데이터는 js/script.js 상단 -->
@@ -11,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+KR:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 <div class="grain"></div><!-- 필름 그레인 질감 레이어 (제거하려면 이 줄 삭제) -->
@@ -87,8 +88,11 @@
 
 <!-- ===== 7. 장바구니 / 마이페이지 팝업 ===== -->
 <div id="overlay"></div>
+<!-- .panels: 장바구니/팝업을 화면 크기의 고정 래퍼 안에 넣어, 닫힌 장바구니가 화면 오른쪽 밖에 걸쳐 있어도 iOS가 페이지 폭을 넓게 계산하지 않도록 함 -->
+<div class="panels">
 <aside id="cart" class="drawer" aria-label="장바구니"><h3>BAG</h3><div id="cartList"></div><p class="total">합계 <b id="total">0원</b></p><button type="button" class="btn" id="closeCart">닫기</button></aside>
 <aside id="mypage" class="modal" aria-label="마이페이지"><h3>MY PAGE</h3><p>로그인은 서버 연동 시 구현됩니다. (예시 화면)</p><button type="button" class="btn" data-close>닫기</button></aside>
-<script src="js/script.js"></script>
+</div>
+<script src="js/script.js?v=4"></script>
 </body>
 </html>
