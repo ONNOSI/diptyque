@@ -2,62 +2,79 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<!-- viewport-fit=cover: 아이폰 가로모드 노치 대응(css의 env(safe-area-inset-*)와 함께 사용) / user-scalable=no는 접근성을 위해 넣지 않음 -->
-<!-- minimum-scale=1: iOS Safari가 "넘치는 콘텐츠에 맞춰 페이지를 자동 축소(shrink-to-fit)"하는 동작을 막는 안전장치. 확대(핀치 줌)는 그대로 허용 -->
+<!-- viewport: 기기 폭 그대로 표시. minimum-scale=1 → iOS Safari가 넘치는 콘텐츠에 맞춰 페이지를 축소(shrink-to-fit)하지 못하게 함 / viewport-fit=cover → 노치 대응 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F1E9DC">
 <title>DIPTYQUE | PARIS, A MEMORY IN SCENT</title>
-<!-- [수정가이드] 폰트 교체는 아래 링크 / 색상·간격은 css/style.css 상단 :root / 상품·문구 데이터는 js/script.js 상단 -->
+<!-- [수정가이드] 색상·간격·헤더 높이: css/style.css 상단 :root / 상품·문구 데이터: js/script.js 상단 PRODUCTS / 이미지: img src 또는 PRODUCTS.img 주소만 교체 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+KR:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
-<div class="grain"></div><!-- 필름 그레인 질감 레이어 (제거하려면 이 줄 삭제) -->
 
-<!-- ===== 1. 헤더 + 메가메뉴 [수정가이드] 메뉴명은 a 텍스트, 하위메뉴는 .mega 안 a 추가/삭제 ===== -->
+<!-- ===== 1. 헤더 / 메뉴 =====
+     모바일: [햄버거] [로고(중앙)] [BAG] 한 줄 + 햄버거를 누르면 메뉴 패널
+     PC(768px~): 로고·BAG 위 / 메뉴 아래 2단 + 전체 너비 메가메뉴
+     [수정가이드] 메뉴명은 a 텍스트, 하위메뉴는 .mega 안 a 추가/삭제 -->
 <header id="header">
   <button type="button" id="burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
   <a href="#home" class="logo">DIPTYQUE</a>
-  <nav id="nav" aria-label="주요 메뉴"><ul>
-    <li class="has-mega"><a href="#shop">SHOP</a><div class="mega"><a href="#shop" data-filter="all">전체</a><a href="#shop" data-filter="perfume">퍼퓸</a><a href="#shop" data-filter="candle">캔들</a><a href="#shop" data-filter="body">바디</a></div></li>
-    <li><a href="#story">OUR STORY</a></li>
-    <li class="has-mega"><a href="#collection">COLLECTION</a><div class="mega"><a href="#collection">ORPHÉON</a><a href="#shop" data-filter="perfume">PHILOSYKOS</a><a href="#shop" data-filter="perfume">DO SON</a></div></li>
-    <li><a href="#journal">JOURNAL</a></li>
-    <li><a href="#" id="mypageBtn">MY PAGE</a></li>
-  </ul></nav>
-  <button type="button" id="cartBtn">BAG <span id="cartCount">0</span></button>
+  <button type="button" id="cartBtn" aria-label="장바구니 열기">BAG <span id="cartCount">0</span></button>
+  <nav id="nav" aria-label="주요 메뉴">
+    <ul>
+      <li class="has-mega"><a href="#shop">SHOP</a>
+        <div class="mega"><a href="#shop" data-filter="all">전체</a><a href="#shop" data-filter="perfume">퍼퓸</a><a href="#shop" data-filter="candle">캔들</a><a href="#shop" data-filter="body">바디</a></div></li>
+      <li><a href="#story">OUR STORY</a></li>
+      <li class="has-mega"><a href="#collection">COLLECTION</a>
+        <div class="mega"><a href="#collection">ORPHÉON</a><a href="#shop" data-filter="perfume">PHILOSYKOS</a><a href="#shop" data-filter="perfume">DO SON</a></div></li>
+      <li><a href="#journal">JOURNAL</a></li>
+      <li><a href="#" id="mypageBtn">MY PAGE</a></li>
+    </ul>
+  </nav>
 </header>
 
-<!-- ===== 2. 메인 비주얼 [수정가이드] 슬라이드 추가 = .slide 블록 복사 / 이미지는 img src 교체 ===== -->
+<main>
+
+<!-- ===== 2. 메인 비주얼 =====
+     모바일: 위 = 타원 이미지 / 아래 = 텍스트 (세로형) · PC: 좌 = 텍스트 / 우 = 이미지(살짝 겹침)
+     [수정가이드] 슬라이드 추가 = .slide 블록 복사 / 이미지는 img src 교체 -->
 <section id="home" class="hero">
-  <div class="slide on"><div class="txt"><p class="eyebrow">N° 01 — SAINT-GERMAIN, 1961</p><h1>Paris,<br><i>a memory</i><br>in scent</h1><p class="kr">기억을 향기로 기록하다</p><a class="link" href="#collection">ORPHÉON 만나기 →</a></div>
-    <figure class="oval"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=1200" alt="파리 향수 비주얼" data-ph="PARIS" decoding="async"></figure></div>
-  <div class="slide"><div class="txt"><p class="eyebrow">N° 02 — LE JAZZ BAR</p><h1>The night<br><i>smells of</i><br>wood</h1><p class="kr">재즈바의 따뜻한 밤을 담다</p><a class="link" href="#story">브랜드 스토리 →</a></div>
-    <figure class="oval"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1200" alt="재즈바 비주얼" data-ph="JAZZ" decoding="async"></figure></div>
-  <div class="slide"><div class="txt"><p class="eyebrow">N° 03 — PROMOTION</p><h1>Letters,<br><i>folded in</i><br>fragrance</h1><p class="kr">오래된 편지 같은 시그니처 향</p><a class="link" href="#shop">SHOP →</a></div>
-    <figure class="oval"><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=1200" alt="편지 비주얼" data-ph="LETTER" decoding="async"></figure></div>
+  <div class="slides">
+    <div class="slide on"><div class="txt"><p class="eyebrow">N° 01 — SAINT-GERMAIN, 1961</p><h1>Paris,<br><i>a memory</i><br>in scent</h1><p class="kr">기억을 향기로 기록하다</p><a class="link" href="#collection">ORPHÉON 만나기 →</a></div>
+      <figure class="oval"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=1200" alt="파리 향수 비주얼" data-ph="PARIS" decoding="async"></figure></div>
+    <div class="slide"><div class="txt"><p class="eyebrow">N° 02 — LE JAZZ BAR</p><h1>The night<br><i>smells of</i><br>wood</h1><p class="kr">재즈바의 따뜻한 밤을 담다</p><a class="link" href="#story">브랜드 스토리 →</a></div>
+      <figure class="oval"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1200" alt="재즈바 비주얼" data-ph="JAZZ" decoding="async"></figure></div>
+    <div class="slide"><div class="txt"><p class="eyebrow">N° 03 — PROMOTION</p><h1>Letters,<br><i>folded in</i><br>fragrance</h1><p class="kr">오래된 편지 같은 시그니처 향</p><a class="link" href="#shop">SHOP →</a></div>
+      <figure class="oval"><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=1200" alt="편지 비주얼" data-ph="LETTER" decoding="async"></figure></div>
+  </div>
   <div class="hud"><button type="button" class="prev" aria-label="이전">←</button><span id="count">01 / 03</span><button type="button" class="next" aria-label="다음">→</button></div>
-  <div class="scroll">SCROLL</div>
+  <div class="scroll-cue" aria-hidden="true">SCROLL</div>
 </section>
 
-<!-- ===== 3. SHOP: 중앙 포커스 캐러셀 (좌우 클릭/화살표/터치 스와이프) ===== -->
+<!-- ===== 3. SHOP: 가로 스냅 캐러셀(손가락 스와이프 / 좌우 화살표 / 가운데 상품 강조) + 상세 =====
+     [수정가이드] 상품은 js/script.js 의 PRODUCTS 배열에서 추가/수정 (HTML 수정 불필요) -->
 <section id="shop" class="sec shop">
-  <p class="eyebrow reveal">THE OBJECTS</p><h2 class="reveal">Shop</h2>
-  <div class="tabs"><button type="button" class="on" data-filter="all">ALL</button><button type="button" data-filter="perfume">PERFUME</button><button type="button" data-filter="candle">CANDLE</button><button type="button" data-filter="body">BODY</button></div>
-  <div class="carousel"><button type="button" class="c-prev" aria-label="이전">‹</button><div id="stage" class="stage"></div><button type="button" class="c-next" aria-label="다음">›</button></div>
-  <div id="detail" class="detail"></div>
+  <p class="eyebrow reveal">THE OBJECTS</p>
+  <h2 class="reveal">Shop</h2>
+  <div class="tabs" role="tablist"><button type="button" class="on" data-filter="all">ALL</button><button type="button" data-filter="perfume">PERFUME</button><button type="button" data-filter="candle">CANDLE</button><button type="button" data-filter="body">BODY</button></div>
+  <div class="carousel">
+    <button type="button" class="c-prev" aria-label="이전 상품">‹</button>
+    <div id="track" class="track" tabindex="0" aria-label="상품 목록"></div>
+    <button type="button" class="c-next" aria-label="다음 상품">›</button>
+  </div>
+  <div id="detail" class="detail" aria-live="polite"></div>
 </section>
 
-<!-- ===== 4. OUR STORY: 좌측 연도 고정(sticky) + 우측 편지 카드 스크롤 [수정가이드] 연혁은 .letter 복사, data-year 수정 =====
-     * 배경(.story-bg)을 별도 래퍼로 분리: 패럴랙스가 넘치는 부분만 이 래퍼에서 잘라내고,
-       .story 자체에는 overflow를 주지 않아야 position:sticky가 PC/모바일 Safari에서 정상 작동합니다. -->
+<!-- ===== 4. OUR STORY =====
+     PC: 좌측 연도 고정(sticky) + 우측 편지 카드 / 모바일: 일반 흐름(제목·연도 → 카드 세로 나열, 카드마다 연도 표시)
+     [수정가이드] 연혁은 .letter 복사 후 data-year 수정 -->
 <section id="story" class="story">
   <div class="story-bg" aria-hidden="true"><div class="parallax" data-bg="https://images.unsplash.com/photo-1431274172761-fca41d930114?w=1600"></div></div>
   <div class="story-grid">
-    <div class="year-box"><p class="eyebrow">OUR STORY</p><div id="year" aria-live="off">1961</div></div>
+    <div class="year-box"><p class="eyebrow">OUR STORY</p><div id="year">1961</div></div>
     <div class="letters">
       <article class="letter reveal" data-year="1961"><small>Paris, 1961</small><p>생제르맹 거리 34번지, 세 명의 예술가가 작은 부티크의 문을 엽니다.</p></article>
       <article class="letter reveal" data-year="1963"><small>Paris, 1963</small><p>첫 번째 향 L'Eau가 태어나고, 향은 기억을 적는 또 하나의 언어가 됩니다.</p></article>
@@ -66,17 +83,21 @@
   </div>
 </section>
 
-<!-- ===== 5. COLLECTION: ORPHÉON 비대칭 매거진 레이아웃 (스크롤 시 이미지 확대) ===== -->
+<!-- ===== 5. COLLECTION: ORPHÉON (모바일 세로 / PC 비대칭 + 스크롤 시 이미지 확대) ===== -->
 <section id="collection" class="sec col">
   <figure class="oval big reveal"><img data-zoom src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=1200" alt="ORPHÉON" data-ph="ORPHÉON" loading="lazy" decoding="async"></figure>
-  <div class="col-txt reveal"><p class="eyebrow">THE SIGNATURE</p><h2>Orphéon</h2><p class="kr">재즈바의 우드와 주니퍼 베리, 시더우드의 온기. 1960년대 파리의 밤을 병에 담았습니다.</p>
+  <div class="col-txt reveal">
+    <p class="eyebrow">THE SIGNATURE</p><h2>Orphéon</h2>
+    <p class="kr">재즈바의 우드와 주니퍼 베리, 시더우드의 온기. 1960년대 파리의 밤을 병에 담았습니다.</p>
     <ul class="notes"><li><b>TOP</b>주니퍼 베리</li><li><b>HEART</b>시더우드</li><li><b>BASE</b>통카빈 · 우디</li></ul>
-    <button type="button" class="btn" data-add="orpheon">장바구니 담기</button></div>
+    <button type="button" class="btn" data-add="orpheon">장바구니 담기</button>
+  </div>
 </section>
 
 <!-- ===== 6. JOURNAL: 필름 프레임 카드 + 영상 [수정가이드] 이미지 src / iframe 영상 ID 교체 ===== -->
-<section id="journal" class="sec">
-  <p class="eyebrow reveal">FIELD NOTES</p><h2 class="reveal">Journal</h2>
+<section id="journal" class="sec journal">
+  <p class="eyebrow reveal">FIELD NOTES</p>
+  <h2 class="reveal">Journal</h2>
   <div class="film-row">
     <figure class="film reveal"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800" alt="파리 거리" data-ph="PARIS" loading="lazy" decoding="async"><figcaption>생제르맹의 아침</figcaption></figure>
     <figure class="film reveal"><div class="video"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="브랜드 영상" allowfullscreen loading="lazy"></iframe></div><figcaption>브랜드 필름</figcaption></figure>
@@ -84,15 +105,18 @@
   </div>
 </section>
 
+</main>
+
 <footer><p class="logo">DIPTYQUE</p><p>© concept page · 학습용 제작물</p></footer>
 
-<!-- ===== 7. 장바구니 / 마이페이지 팝업 ===== -->
-<div id="overlay"></div>
-<!-- .panels: 장바구니/팝업을 화면 크기의 고정 래퍼 안에 넣어, 닫힌 장바구니가 화면 오른쪽 밖에 걸쳐 있어도 iOS가 페이지 폭을 넓게 계산하지 않도록 함 -->
-<div class="panels">
-<aside id="cart" class="drawer" aria-label="장바구니"><h3>BAG</h3><div id="cartList"></div><p class="total">합계 <b id="total">0원</b></p><button type="button" class="btn" id="closeCart">닫기</button></aside>
-<aside id="mypage" class="modal" aria-label="마이페이지"><h3>MY PAGE</h3><p>로그인은 서버 연동 시 구현됩니다. (예시 화면)</p><button type="button" class="btn" data-close>닫기</button></aside>
+<!-- ===== 7. 장바구니 / 마이페이지 팝업 =====
+     .panels = 화면 크기에 고정된 래퍼. 닫힌 패널이 화면 밖에 걸쳐 있어도 페이지 폭에 영향을 주지 않음 -->
+<div class="panels" id="panels">
+  <div id="overlay"></div>
+  <aside id="cart" class="drawer" aria-label="장바구니"><h3>BAG</h3><div id="cartList"></div><p class="total">합계 <b id="total">0원</b></p><button type="button" class="btn" id="closeCart">닫기</button></aside>
+  <aside id="mypage" class="modal" aria-label="마이페이지"><h3>MY PAGE</h3><p>로그인은 서버 연동 시 구현됩니다. (예시 화면)</p><button type="button" class="btn" data-close>닫기</button></aside>
 </div>
-<script src="js/script.js?v=4"></script>
+
+<script src="js/script.js?v=5"></script>
 </body>
 </html>
