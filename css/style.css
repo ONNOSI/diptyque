@@ -213,10 +213,9 @@ footer{background:var(--black);color:var(--taupe);text-align:center;padding:60px
  
  .txt h1{font-size:15vw}.scroll{display:none}
  .sec{padding:80px 6vw}
- .story-grid {
-    align-items: center;
-}
-.col{grid-template-columns:1fr}.year-box{height:auto;position:sticky;top:var(--h);padding:20px 0;background:#252321cc;z-index:3}#year{font-size:22vw}.letters{padding:10vh 0}.letter{margin-bottom:12vh}
+
+.col{grid-template-columns:1fr;}
+
  .film-row{grid-template-columns:1fr;gap:30px}.film:nth-child(n){transform:none;margin-top:0}
 .hero .slide .oval {
     display: none !important;
@@ -452,25 +451,33 @@ footer{background:var(--black);color:var(--taupe);text-align:center;padding:60px
     }
 }
 /* 모바일 화면에서만 OUR STORY 변경 */
+/* ===== 모바일 OUR STORY 전용 설정 ===== */
 @media (max-width: 768px) {
+
     .story-grid {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 0;
     }
 
     .year-box {
         width: 84%;
-        margin: 0 auto;
+        margin: 80px auto 0;
         padding: 20px 0 50px;
         height: auto;
         position: relative;
         top: auto;
         background: transparent;
+        z-index: 3;
+
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        margin-top: 80px;
+    }
+
+    .year-box .eyebrow {
+        margin: 0;
     }
 
     #year {
@@ -484,6 +491,7 @@ footer{background:var(--black);color:var(--taupe);text-align:center;padding:60px
         width: 84%;
         margin: 0 auto;
         padding: 0 0 8vh;
+
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -494,6 +502,7 @@ footer{background:var(--black);color:var(--taupe);text-align:center;padding:60px
         width: 100%;
         margin: 0 0 5vh;
     }
+
 }
 
 /* 모바일 화면 가로 밀림 방지 */
