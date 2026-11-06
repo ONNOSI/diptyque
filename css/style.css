@@ -149,10 +149,11 @@ footer .logo{display:block;color:var(--ivory);margin-bottom:12px}
 /* ===== 9. 팝업 (닫힌 상태는 visibility:hidden → 화면 밖 요소가 스크롤 영역/포커스에 잡히지 않음) ===== */
 #overlay{position:fixed;inset:0;background:#0009;opacity:0;pointer-events:none;transition:.3s;z-index:60}
 #overlay.on{opacity:1;pointer-events:auto}
-.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-45%);background:var(--paper);padding:36px;width:min(90vw,420px);z-index:70;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,transform .3s,visibility 0s .3s;display:grid;gap:16px}
+.panels{position:fixed;inset:0;z-index:70;overflow:hidden;pointer-events:none}   /* 화면 크기 고정 래퍼: 안쪽 팝업이 화면 밖으로 나가도 페이지 폭에 영향 없음 */
+.modal{position:absolute;top:50%;left:50%;transform:translate(-50%,-45%);background:var(--paper);padding:36px;width:min(90vw,420px);z-index:2;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,transform .3s,visibility 0s .3s;display:grid;gap:16px}
 .modal.on{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,-50%);transition-delay:0s}
-.drawer{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(92vw,380px);background:var(--paper);padding:32px;z-index:70;transform:translateX(100%);visibility:hidden;transition:transform .5s,visibility 0s .5s;overflow:auto;overscroll-behavior:contain}
-.drawer.on{transform:none;visibility:visible;transition-delay:0s}
+.drawer{position:absolute;top:0;right:0;height:100%;width:min(92vw,380px);background:var(--paper);padding:32px;z-index:1;transform:translateX(100%);visibility:hidden;transition:transform .5s,visibility 0s .5s;overflow:auto;overscroll-behavior:contain}
+.drawer.on{transform:none;visibility:visible;pointer-events:auto;transition-delay:0s}
 .row{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid var(--taupe);padding:12px 0;font-size:.85rem}
 .row button{border:1px solid var(--taupe);width:32px;height:32px}
 .total{margin:24px 0}
@@ -204,11 +205,15 @@ footer .logo{display:block;color:var(--ivory);margin-bottom:12px}
   .mega{position:static;padding:0 0 10px 12px;gap:0}
   .mega a{display:block;padding:9px 0;font-size:.8rem;color:var(--brown)}
 
-  /* --- 메인 비주얼: 모바일에서는 텍스트 중심(기존 디자인 유지), 사진 숨김 --- */
-  .slide{grid-template-columns:minmax(0,1fr);align-content:center;padding:var(--h) 7vw 0}
+  /* --- 메인 비주얼: 세로형(위 = 아치 이미지, 아래 = 텍스트). PC의 좌우 배치/겹침을 쓰지 않음 --- */
+  .slide{display:flex;flex-direction:column;justify-content:center;align-items:stretch;padding:calc(var(--h) + 12px) 7vw calc(84px + env(safe-area-inset-bottom))}
+  .hero .oval{order:-1;align-self:flex-end;flex:none;transform:none;margin:0 10px 22px 0;
+    height:clamp(150px,30vh,330px);height:clamp(150px,30svh,330px);width:auto;
+    box-shadow:0 0 0 6px var(--paper),0 0 0 7px var(--taupe)}
+  .oval img{object-position:50% 35%}                 /* 세로로 긴 아치에서 병 윗부분이 잘리지 않도록 크롭 위치 지정 */
   .txt{margin:0}
-  .txt h1{font-size:clamp(3rem,15vw,6.5rem)}
-  .hero .oval{display:none}
+  .txt h1{font-size:clamp(2.8rem,13.5vw,5.5rem);margin:.6rem 0 1rem}
+  .txt .kr{margin-bottom:1.2rem}
   .scroll{display:none}
 
   /* --- SHOP --- */
@@ -216,6 +221,12 @@ footer .logo{display:block;color:var(--ivory);margin-bottom:12px}
   .stage{min-height:300px}
   .c-prev,.c-next{font-size:3rem}
   .opts select{font-size:16px}              /* iOS: 16px 미만이면 선택 시 화면이 자동 확대됨 */
+  /* 상품 상세: 가격(위) → 용량 선택 + 수량(한 줄) → BUY NOW(전체 너비) */
+  .opts{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:14px 0}
+  .opts b{grid-column:1/-1;order:-1;text-align:left;font-family:var(--en2);font-weight:400;font-size:1.35rem;padding-bottom:6px}
+  .opts select{justify-self:start}
+  .qty{justify-self:end}
+  .qty button{width:var(--tap);height:var(--tap)}
 
   /* --- OUR STORY: 연도·문구가 카드 위, sticky 해제, 카드 3개 동일 너비 --- */
   .sec{padding:80px 6vw}
@@ -232,6 +243,12 @@ footer .logo{display:block;color:var(--ivory);margin-bottom:12px}
   .col-txt{padding-bottom:0}
   .film-row{grid-template-columns:minmax(0,1fr);gap:30px}
   .film:nth-child(n){transform:none;margin-top:0}
+}
+
+/* 화면 높이가 낮은 폰(iPhone SE 등) 세로: 메인 비주얼이 넘치지 않도록 한 단계 축소 */
+@media (max-width:768px) and (max-height:720px){
+  .txt h1{font-size:clamp(2.4rem,12vw,4rem)}
+  .txt .kr{margin-bottom:.9rem}
 }
 
 /* 모션 줄이기 설정 */
