@@ -476,8 +476,8 @@ footer{background:var(--black);color:var(--taupe);text-align:center;padding:60px
         align-items: flex-start;
     }
 
-    .year-box .eyebrow {
-        margin: 0;
+     .year-box .eyebrow {
+        transform: translateY(-10px);
     }
 
     #year {
